@@ -23,7 +23,7 @@ pipeline {
         stage('Integration Test') {
             steps {
 		        echo "Integration Test"
-            } post (
+            } post {
                 always {
                     echo "I am running."
                 }
@@ -33,7 +33,7 @@ pipeline {
                 failure {
                     echo "failed!"
                 }
-            )
+            }
         }
     }
 }
