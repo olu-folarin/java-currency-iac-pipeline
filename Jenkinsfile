@@ -23,17 +23,18 @@ pipeline {
         stage('Integration Test') {
             steps {
 		        echo "Integration Test"
-            } post {
-                always {
-                    echo "I am running."
-                }
-                success {
-                    echo "successful!"
-                }
-                failure {
-                    echo "failed!"
-                }
             }
+        }
+    } 
+    post {
+        always {
+            echo 'I am running.'
+        }
+        success {
+            echo 'successful!'
+        }
+        failure {
+            echo 'failed!'
         }
     }
 }
