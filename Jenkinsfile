@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "mvn --version"
+                sh 'mvn --version'
                 echo "Build"
             }
         }
@@ -32,13 +32,13 @@ pipeline {
     } 
     post {
         always {
-            echo 'I am running.'
+            echo "I am running."
         }
         success {
-            echo 'successful!'
+            echo "successful!"
         }
         failure {
-            echo 'failed!'
+            echo "failed!"
         }
     }
 }
