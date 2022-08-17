@@ -9,11 +9,11 @@
 // declarative pipeline is better
 pipeline {
     // agent any
-    agent { docker { image 'maven:3.8.6-jdk-11' } }
+    agent { docker { image 'node:18.7' } }
     stages {
         stage('Build') {
             steps {
-                sh 'mvn --version'
+                sh 'node --version'
                 echo "Build"
             }
         }
