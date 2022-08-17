@@ -12,14 +12,15 @@ pipeline {
     // agent { docker { image 'maven:3.8.6' } }
 
     // getting the maven and docker environments
-    environment {
-        dockerHome = tool 'myDocker'
-        mavenHome = tool 'myMaven'
-        // add them to path
-        PATH+EXTRA = "$dockerHome/bin:$mavenHome"
-    }
+    // environment {
+    //     dockerHome = tool 'myDocker'
+    //     mavenHome = tool 'myMaven'
+    //     // add them to path
+    //     PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
+    // }
+
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
                 sh 'mvn --version'
                 sh 'docker version'
@@ -30,6 +31,22 @@ pipeline {
                 echo "$BUILD_TAG - $env.BUILD_TAG"
                 echo "$BUILD_URL - $env.BUILD_URL"
                 echo "$BUILD_NUMBER - $env.BUILD_NUMBER"
+            }
+        }
+        stage('Compile') {
+            steps {
+                sh "mvn clean compile"
+            }
+        }
+        // tests
+        stage('Test') {
+            steps {
+                sh "mvn test"
+            }
+        }
+        stage('Integration Test') {
+            steps {
+                sh "mvn failsafe:integration-test failsafe:verify"
             }
         }
         stage('Test') {
