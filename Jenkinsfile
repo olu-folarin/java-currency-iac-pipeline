@@ -9,13 +9,10 @@
 // declarative pipeline is better
 pipeline {
     // agent any
-    agent {
-         docker { image 'maven:3.8.1-adoptopenjdk-11' }
-        }
+    agent { docker { image 'maven:3.6.3' } }
     stages {
         stage('Build') {
             steps {
-                sh 'mvn --version'
                 echo "Build"
             }
         }
@@ -32,13 +29,13 @@ pipeline {
     } 
     post {
         always {
-            echo "I am running."
+            echo 'I am running.'
         }
         success {
-            echo "successful!"
+            echo 'successful!'
         }
         failure {
-            echo "failed!"
+            echo 'failed!'
         }
     }
 }
