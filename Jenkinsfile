@@ -8,8 +8,8 @@
 
 // declarative pipeline is better
 pipeline {
-    // agent any
-    agent { docker { image 'maven:3.8.6' } }
+    agent any
+    // agent { docker { image 'maven:3.8.6' } }
     stages {
         stage('Build') {
             steps {
